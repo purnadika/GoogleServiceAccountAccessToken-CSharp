@@ -61,7 +61,7 @@ namespace GoogleServiceAccountAccessToken
                         break;
                 }
                 Clear();
-                WriteLine("Scope information : https://developers.google.com/identity/protocols/oauth2/scopes \n");
+                WriteLine(SCOPE_INFO);
             }
         }
     }
