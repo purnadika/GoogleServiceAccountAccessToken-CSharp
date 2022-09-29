@@ -1,17 +1,18 @@
-﻿using System.Net.Http;
-using static System.Console;
-
-namespace GoogleServiceAccountAccessToken
+﻿namespace GoogleServiceAccountAccessToken
 {
     class TestJSONKey
     {
-        public static void GetTokenAndCall()
+        public static string GetToken(string scopesSemicolonDelimited, string impersonate, out bool isError)
         {
+            var scopes = scopesSemicolonDelimited.Split(';');
             var token = GoogleServiceAccount.GetAccessTokenFromJSONKey(
-             "Keys/C-SharpCorner-0338f58d564f.json",
-             "https://www.googleapis.com/auth/userinfo.profile");
+             "Keys/serviceaccount.json",
+             impersonate,
+             out isError,
+             scopes);
 
-            WriteLine(new HttpClient().GetStringAsync($"https://www.googleapis.com/plus/v1/people/110259743757395873050?access_token={token}").Result);
+            return token;
+
         }
     }
 }
